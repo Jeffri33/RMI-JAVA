@@ -9,19 +9,21 @@ package clases;
  *
  * @author evert
  */
-import interfaces.objetomonitor;
+import interfaces.objMonitor;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class monitorclass extends UnicastRemoteObject implements objetomonitor {
+public class monitorclass extends UnicastRemoteObject implements objMonitor {
 
     public monitorclass() throws RemoteException {
         super();
     }
 
     
+    @Override
     public void pingMonitor() throws RemoteException {
-        //QUE VOY HACER?
+        System.out.print("monitor activo\n");
+        
         
     }
 }

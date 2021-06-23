@@ -6,13 +6,14 @@
 package clases;
 
 import apps.coordinador;
-import interfaces.objetoCoordinador;
+import interfaces.objCoordinador;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class coordinadorclass extends UnicastRemoteObject implements objetoCoordinador {
+public class coordinadorclass extends UnicastRemoteObject implements objCoordinador {
 
     String loadavg = "loadavg"; //GUARDAR EL VALOR DE LOADAVG 
+    
 
     public coordinadorclass() throws RemoteException {
         super(); //CONSTRUCTOR

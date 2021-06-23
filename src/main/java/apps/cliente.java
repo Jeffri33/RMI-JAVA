@@ -9,8 +9,8 @@ package apps;
  *
  * @author evert
  */
-import javax.swing.JOptionPane;
-import interfaces.objetoCoordinador;
+import interfaces.objCoordinador;
+import interfaces.objMonitor;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -22,32 +22,35 @@ public class cliente {
     public static void main(String[] args) throws RemoteException, NotBoundException {
 
         int segundos;
-        String ip = "localhost";
+        
 
         try {
             //REGISTRO DE LAS FUNCIONES
-            Registry registry = LocateRegistry.getRegistry(ip, 1099);
-            objetoCoordinador miCoordinador = (objetoCoordinador) registry.lookup("miCoordinador");
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            objCoordinador miCoordinador = (objCoordinador) registry.lookup("miCoordinador");
+            objMonitor miMonitor = (objMonitor) registry.lookup("miMonitor");
 
             //VERIFICAR CUANTOS MONITORES HAY FUNCIONANDO
             if (miCoordinador.iniClient() > 0) {
-                //OBTENER EL INTERVALO DE MEDICION
+                //se consigue el tiempo de medicion
                 
-                System.out.print("Segundos:");
+                System.out.print("Segundos: ");
                 Scanner leer = new Scanner(System.in);
                 segundos = leer.nextInt();
 
-                //DEVUELVE LA CANTIDAD DE MONITORES ACTIVOS
+                //devuelve la cantidad de monitores activos
                 while (true) {
+                    miMonitor.pingMonitor();
+                    
                     System.out.println("loadavg: " + miCoordinador.getLoadAvg());
 
-                    //ESPERAMOS PARA VOLVER A HACER LA CONSULTA
+                    //se espera para la siguiente consulta
                     Thread.sleep(segundos * 1000);
                 }
             } else {
                 System.out.println("No hay monitores registrados...");
             }
-        } catch (Exception ex) {
+        } catch (InterruptedException | NotBoundException | RemoteException ex) {
             System.out.println(ex.getMessage());
         }
 

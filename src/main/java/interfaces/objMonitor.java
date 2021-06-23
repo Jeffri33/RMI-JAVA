@@ -12,7 +12,8 @@ package interfaces;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface objetomonitor extends Remote {
+public interface objMonitor extends Remote {
 
     void pingMonitor() throws RemoteException;
+    //detecta si un monitor no esta activo
 }

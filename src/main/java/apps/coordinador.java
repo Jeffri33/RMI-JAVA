@@ -28,12 +28,15 @@ public class coordinador {
             //REGISTRO
             Registry registry = LocateRegistry.createRegistry(1099);
             registry.bind("miCoordinador", (Remote) new coordinadorclass());
+           
+            
         } catch (Exception ex) {
             System.out.print(ex.getMessage());
             System.exit(0);
         }
 
         //PEDIR
+        
         System.out.print("Intervalo de medición de los monitores: ");
         Scanner leer = new Scanner(System.in);
         tiempo = leer.nextInt();

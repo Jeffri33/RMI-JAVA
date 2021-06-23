@@ -5,7 +5,7 @@
  */
 package apps;
 
-import interfaces.objetoCoordinador;
+import interfaces.objCoordinador;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -29,11 +29,11 @@ public class monitor2 {
             //EXTRAER VALOR DEL FICHERO
             BufferedReader br2 = new BufferedReader(new FileReader(new File("/etc/hostname")));
             id = br2.readLine();
-            System.out.println("Monitor: " + id + " - en ejecucion");
+            System.out.println("Monitor 2: " + id + " - en ejecucion");
 
             //REGISTRO DE LAS FUNCIONES
             Registry registry = LocateRegistry.getRegistry(ip, 1099);
-            objetoCoordinador miCoordinador = (objetoCoordinador) registry.lookup("miCoordinador");
+            objCoordinador miCoordinador = (objCoordinador) registry.lookup("miCoordinador");
 
             //OBTENGO LOS SEGUNDOS
             segundos = miCoordinador.iniMonitor(id);
